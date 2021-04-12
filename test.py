@@ -1,16 +1,19 @@
-nums = [1,3,3]
-nums = [2,2,2,0,2,2]
-l, r = 0, len(nums) - 1
-while l < r:
-    mid = (l + r) // 2
-    print(l, mid, r)
-    print(nums[l], nums[mid], nums[r])
-    if nums[mid] == nums[r]:
-        r -= 1
-    elif nums[mid] < nums[r]:
-        r = mid
-    else:
-        l = mid + 1
-    print(l, mid, r)
-    print(nums[l], nums[mid], nums[r])
-    input()
+import heapq
+n = 10
+factors = [2, 3, 5]
+seen = {1}
+heap = [1]
+
+for i in range(n - 1):
+    curr = heapq.heappop(heap)
+    print('curr:', curr)
+    for factor in factors:
+        if (nxt := curr * factor) not in seen:
+            print(nxt)
+            seen.add(nxt)
+            print(seen)
+            heapq.heappush(heap, nxt)
+            print(heap)
+            # input("____________________")
+
+print(heapq.heappop(heap))
