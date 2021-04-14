@@ -1,12 +1,12 @@
 #
-# @lc app=leetcode.cn id=39 lang=python3
+# @lc app=leetcode.cn id=40 lang=python3
 #
-# [39] 组合总和
+# [40] 组合总和 II
 #
 
 # @lc code=start
 class Solution:
-    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+    def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
 
         def dfs(begin, combine, target):
             if target == 0:
@@ -16,8 +16,11 @@ class Solution:
                 diff = target - candidates[index]
                 if diff < 0:
                     break
-                dfs(index, combine + [candidates[index]], diff)
-
+                if index > begin and candidates[index] == candidates[index - 1]:
+                    continue
+                dfs(index + 1, combine + [candidates[index]], diff)
+                
+        
         size = len(candidates)
         if size == 0:
             return []

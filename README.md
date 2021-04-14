@@ -4,7 +4,7 @@
 
 ## 题解
 
-#### 26. /80. 删除有序数组中的重复项 1/2
+#### 26./80. 删除有序数组中的重复项 1/2
 
 双指针：
 
@@ -12,13 +12,20 @@
 
 快指针指向数组序列
 
-#### 39. 组合总和
+#### 39.40. 组合总和 1/2
 
 搜索回溯
 
-递归函数`dfs(target, combine, idx)`
+递归函数`dfs(begin, combine, target)`
 
-`target <= 0`或者`idx = 数组的大小`，递归结束
+`target <= 0`或者`index = 数组的大小`，递归结束
+
+40要求不重复，即加入约束：
+
+```
+if index > begin and candidates[index] == candidates[index - 1]:
+    continue
+```
 
 ### 二分
 
