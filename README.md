@@ -63,7 +63,7 @@ $dp[i]=min(dp[p2] \times 2, dp[p3] \times 3, dp[p5] \times 5)$，然后分别比
 
 ### 179. 最大数
 
-- map() 函数：`map(function, iterable,...)`
+- map() 函数：`map(function, iterable,...)`
 
   Python 2 返回列表；Python 3 返回迭代器
 
