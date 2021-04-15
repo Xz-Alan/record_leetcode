@@ -82,3 +82,161 @@ $dp[i]=min(dp[p2] \times 2, dp[p3] \times 3, dp[p5] \times 5)$，然后分别比
 - `str.join(sequence)`将序列中的元素以指定的字符连接生成一个新的字符串
 
 ## 方法总结
+
+### 二叉树
+
+#### 数组创建二叉树作调试用
+
+```python
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+
+def genTree(arr):
+    def gen(arr, i):
+        if i < len(arr):
+            tn = TreeNode(arr[i]) if arr[i] is not None else None
+            if tn is not None:
+                tn.left = gen(arr, 2 * i + 1)
+                tn.right = gen(arr, 2 * i + 2)
+            return tn
+    return gen(arr, 0)
+
+root = genTree(arr)
+```
+
+#### 遍历
+
+- 前序： 根-->左-->右
+- 中序：左-->根-->右
+- 后序：左-->右-->根
+
+##### 递归遍历
+
+```python
+from typing import List
+class Solution_1:
+    def preorderTraversal(self, root: TreeNode) -> List[int]:
+        if not root:
+            return []
+        # 前序递归
+        # return [root.val] + self.preorderTraversal(root.left) + self.preorderTraversal(root.right)
+        # 中序递归
+        return self.preorderTraversal(root.left) + [root.val] + self.preorderTraversal(root.right)
+        # 后序递归
+        # return self.preorderTraversal(root.left) + self.preorderTraversal(root.right) + [root.val]
+      	
+class Solution_2:
+    def preorderTraversal(self, root: TreeNode) -> List[int]:
+        def dfs(cur):
+            if not cur:
+                return
+            # 前序递归
+            # res.append(cur.val)
+            # dfs(cur.left)
+            # dfs(cur.right)
+            # 中序递归
+            dfs(cur.left)
+            res.append(cur.val)
+            dfs(cur.right)
+            # 后序递归
+            # dfs(cur.left)
+            # dfs(cur.right)
+            # res.append(cur.val)
+            
+        res = []
+        dfs(root)
+        return res
+```
+
+##### 迭代遍历
+
+```python
+# 只需一个栈的空间
+class Solution_1:
+    def inorderTraversal(self, root: TreeNode) -> List[int]: 
+        res = []
+        stack = []
+        cur = root
+        # 中序，模板：先用指针找到每颗子树的最左下角，然后进行进出栈操作
+        while stack or cur:
+            while cur:
+                stack.append(cur)
+                cur = cur.left
+            cur = stack.pop()
+            res.append(cur.val)
+            cur = cur.right
+        return res
+        
+        # # 前序，相同模板
+        # while stack or cur:
+        #     while cur:
+        #         res.append(cur.val)
+        #         stack.append(cur)
+        #         cur = cur.left
+        #     cur = stack.pop()
+        #     cur = cur.right
+        # return res
+        
+        # # 后序，相同模板
+        # while stack or cur:
+        #     while cur:
+        #         res.append(cur.val)
+        #         stack.append(cur)
+        #         cur = cur.right
+        #     cur = stack.pop()
+        #     cur = cur.left
+        # return res[::-1]
+        
+
+# 标记法迭代（需要双倍的空间来存储访问状态）0表示当前未访问，1表示已访问。
+class Solution_2:
+    def preorderTraversal(self, root: TreeNode) -> List[int]:
+        res = []
+        stack = [(0, root)]
+        while stack:
+            flag, cur = stack.pop()
+            if not cur: continue
+            if flag == 0:
+                # 前序，标记法
+                stack.append((0, cur.right))
+                stack.append((0, cur.left))
+                stack.append((1, cur))
+                
+                # # 后序，标记法
+                # stack.append((1, cur))
+                # stack.append((0, cur.right))
+                # stack.append((0, cur.left))
+                
+                # # 中序，标记法
+                # stack.append((0, cur.right))
+                # stack.append((1, cur))
+                # stack.append((0, cur.left))  
+            else:
+                res.append(cur.val)  
+        return res
+        
+        # # 层序，标记法
+        # res = []
+        # queue = [(0, root)]
+        # while queue:
+        #     flag, cur = queue.pop(0)  # 注意是队列，先进先出
+        #     if not cur: continue
+        #     if flag == 0:
+                  # 层序遍历这三个的顺序无所谓，因为是队列，只弹出队首元素
+        #         queue.append((1, cur))
+        #         queue.append((0, cur.left))
+        #         queue.append((0, cur.right))
+        #     else:
+        #         res.append(cur.val)
+        # return res
+```
+
+##### 莫里斯遍历
+
+##### N叉树遍历
+
+
+
