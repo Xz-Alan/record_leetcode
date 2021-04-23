@@ -126,6 +126,29 @@ $dp[i]=min(dp[p2] \times 2, dp[p3] \times 3, dp[p5] \times 5)$，然后分别比
 
 优化 --> `from sortedcontainers import SortedList` 有序集合，二分查找不超过k的最大数值和
 
+### 368. 最大整除子集
+
+#### 1) 动态规划
+
+1. 动态规划找出最大子集的个数、最大子集中的最大整数
+
+`dp[i]`表示以`nums[i]`为最大整数的最大子集的个数
+
+状态转移方程：
+
+```python
+for i in range(1, len(nums)):
+    for j in range(0, i):
+        if nums[i] % nums[j] == 0:
+            dp[i] = max(dp[i], dp[j] + 1)
+```
+
+2. 倒推获得最大子集输出
+
+#### 2) 字典dp
+
+`dp = dict{}`，记录最大子集的个数的同时，记录子集输出
+
 ## 方法总结
 
 ### 二叉树
