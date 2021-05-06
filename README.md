@@ -178,6 +178,24 @@ def singleNumber(self, nums: List[int]) -> int:
 
 $arr[i]=arr[i−1] \oplus encoded[i−1]$。
 
+### 198.打家劫舍
+
+动态规划
+
+转移方程：`dp[i] = max(nums[i] + dp[i - 2], dp[i - 1])`
+
+边界条件：`dp[0] = nums[0]` & ` dp[1] = max(nums[0], nums[1])`
+
+进阶：固定数组dp --> 滚动数组，只存储前两个值
+
+`first, second = second, max(nums[i] + first, second)`
+
+### 740. 删除与获得点数
+
+记元素$x$在数组中出现的次数为 $c_x$，可以用一个数组$\textit{sum}$记录数组$\textit{nums}$中所有相同元素之和，即$\textit{sum}[x]=x \cdot c_x$。
+
+对$\textit{sum}$运用[198.打家劫舍](###198.打家劫舍)动态规划的方法进行计算
+
 ## 方法总结
 
 ### 二叉树
@@ -336,6 +354,4 @@ class Solution_2:
 ##### N叉树遍历
 
 ### 二分查找
-
-
 
