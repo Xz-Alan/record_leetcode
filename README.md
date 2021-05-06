@@ -157,6 +157,27 @@ for i in range(1, len(nums)):
 
 贪心得到运载天数确定二分判定条件
 
+### 136. 只出现一次的数字
+
+异或：
+
+1. 任何数和 0 做异或运算，结果仍然是原来的数，即 $a \oplus 0 = a$。
+2. 任何数和其自身做异或运算，结果是 0，即$a \oplus a = 0$。
+3. 异或运算满足交换律和结合律，即$a \oplus b \oplus a=b \oplus a \oplus a=b \oplus (a \oplus a)=b \oplus 0 = b$。
+
+因此，只出现一次的数字 = 数组全部元素的异或运算结果
+
+```python
+def singleNumber(self, nums: List[int]) -> int:
+    return reduce(lambda x, y: x ^ y, nums)
+```
+
+### 1720. 解码异或后的数组
+
+已知$encoded[i−1] = arr[i−1] \oplus arr[i]$，$arr[0]=first$，则有：
+
+$arr[i]=arr[i−1] \oplus encoded[i−1]$。
+
 ## 方法总结
 
 ### 二叉树
