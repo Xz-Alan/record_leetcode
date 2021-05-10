@@ -196,6 +196,36 @@ $arr[i]=arr[i−1] \oplus encoded[i−1]$。
 
 对$\textit{sum}$运用[198.打家劫舍](###198.打家劫舍)动态规划的方法进行计算
 
+### 690.员工的重要性
+
+深度/广度优先搜索
+
+调试：
+
+```
+class Employee:
+    def __init__(self, id: int, importance: int, subordinates: List[int]):
+        self.id = id
+        self.importance = importance
+        self.subordinates = subordinates
+
+def genEmployee(employees):
+    size = len(employees)
+    emps = []
+    for i in range(size):
+        emps.append(Employee(0,0,[]))
+        emps[i].id = employees[i][0]
+        emps[i].importance = employees[i][1]
+        emps[i].subordinates = employees[i][2]
+    return emps
+    
+employees = genEmployee([[1, 5, [2, 3]], [2, 3, []], [3, 3, []]])
+```
+
+### 872.叶子相似的数
+
+深度优先搜索，先搜索当前节点的左子节点，再搜索当前节点的右子节点。
+
 ## 方法总结
 
 ### 二叉树
