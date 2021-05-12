@@ -190,7 +190,7 @@ $arr[i]=arr[i−1] \oplus encoded[i−1]$。
 
 `first, second = second, max(nums[i] + first, second)`
 
-### 740. 删除与获得点数
+### 740.删除与获得点数
 
 记元素$x$在数组中出现的次数为 $c_x$，可以用一个数组$\textit{sum}$记录数组$\textit{nums}$中所有相同元素之和，即$\textit{sum}[x]=x \cdot c_x$。
 
@@ -234,7 +234,53 @@ employees = genEmployee([[1, 5, [2, 3]], [2, 3, []], [3, 3, []]])
 
 ### 13.罗马数字转整数
 
+字典：7个字母对应7个数值。
 
+当前字符值小于其右边字符值，则减去该值，否则加上该值。
+
+### 2.两数相加
+
+链表逆序相加，模拟实现即可。
+
+> 连等赋值的逻辑顺序
+
+```
+curr.next = curr = ListNode(val)
+# 等价于
+# curr.next = ListNode(val)
+# curr = curr.next
+```
+
+链表调试
+
+```
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+def genListNode(arr):
+    def gen(arr, i):
+        if i < len(arr):
+            ln = ListNode(arr[i])
+            ln.next = gen(arr, i + 1)
+            return ln
+    return gen(arr, 0)
+```
+
+### 1734.解码异或后的排列
+
+> `perm` 是前 `n` 个正整数的排列，且 `n` 是个 **奇数**
+
+按照[740.删除与获得点数](###740.删除与获得点数)的方法，需要求出perm的第一个值`perm[0]`
+
+因为`perm[0] = total ^ odd`，且有：
+
+`total = 1 ^ 2 ^ ···^ n = perm[0] ^ perm[1] ^ ··· ^ perm[n-1]`
+
+`odd = encoded[1] ^ encoded[3] ^ ··· ^ encoded[n-2] = perm[1] ^ perm[2] ^ ··· ^ perm[n-1] `
+
+即可计算出`perm[0]`，进一步得到`perm`。
 
 ## 方法总结
 
