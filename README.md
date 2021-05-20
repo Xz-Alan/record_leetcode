@@ -332,6 +332,17 @@ def genListNode(arr):
 
 即有：`count = m * k - total `
 
+### 692. 前k个高频单词
+
+1. `Count()`频次计数
+2. `cmp_to_key`排序输出前k高频
+
+```
+def topKFrequent(self, words: List[str], k: int) -> List[str]:
+	d = Counter(words)
+	return sorted(d.keys(), key=cmp_to_key(lambda x, y: int(d[x] < d[y] or (d[x] == d[y] and x > y)) - 0.5))[:k]
+```
+
 ## 方法总结
 
 ### 二叉树
