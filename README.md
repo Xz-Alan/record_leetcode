@@ -343,6 +343,14 @@ def topKFrequent(self, words: List[str], k: int) -> List[str]:
 	return sorted(d.keys(), key=cmp_to_key(lambda x, y: int(d[x] < d[y] or (d[x] == d[y] and x > y)) - 0.5))[:k]
 ```
 
+### 1035. 不相交的线（马甲）/ 1143. 最大公共子序列
+
+二维动态规划：`dp[i][j]`表示`nums1[0:i]`和`nums2[0:j]`的最长公共子序列的长度
+
+初始状态：`dp[0][j] = 0 & dp[i][0] = 0`
+
+状态转移：$d p[i][j]=\left\{\begin{array}{ll}d p[i-1][j-1]+1, & nums_1[i-1]=nums_2[j-1] \\ \max (dp[i-1][j], dp[i][j-1]), & nums_1[i-1] =nums_2[j-1]\end{array}\right.$
+
 ## 方法总结
 
 ### 二叉树
