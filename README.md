@@ -349,7 +349,15 @@ def topKFrequent(self, words: List[str], k: int) -> List[str]:
 
 初始状态：`dp[0][j] = 0 & dp[i][0] = 0`
 
-状态转移：$d p[i][j]=\left\{\begin{array}{ll}d p[i-1][j-1]+1, & nums_1[i-1]=nums_2[j-1] \\ \max (dp[i-1][j], dp[i][j-1]), & nums_1[i-1] =nums_2[j-1]\end{array}\right.$
+状态转移：$d p[i][j]=\left\{\begin{array}{ll}dp[i-1][j-1]+1, & nums_1[i-1]=nums_2[j-1] \\ \max (dp[i-1][j], dp[i][j-1]), & nums_1[i-1] =nums_2[j-1]\end{array}\right.$
+
+### 664. 奇怪的打印机
+
+二维动态规划：`dp[i][j]`表示打印完成字符串`s`区间`[i,j]`的最少操作数
+
+初始状态：`dp[i][i] = 1`
+
+状态转移：$dp[i][j]=\left\{\begin{array}{ll}dp[i][j-1], & s[i]=s[j] \\ \min_{k=i}^{j=1} dp[i][k]+dp[k+1][j], & s[i] \neq s[j]\end{array}\right.$
 
 ## 方法总结
 
