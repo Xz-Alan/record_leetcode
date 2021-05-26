@@ -359,6 +359,18 @@ def topKFrequent(self, words: List[str], k: int) -> List[str]:
 
 状态转移：$dp[i][j]=\left\{\begin{array}{ll}dp[i][j-1], & s[i]=s[j] \\ \min_{k=i}^{j=1} dp[i][k]+dp[k+1][j], & s[i] \neq s[j]\end{array}\right.$
 
+### 1190. 反转每对括号间的子串
+
+>输入：s = "(ed(et(oc))el)"
+>
+>输出："leetcode"
+
+从左到右遍历字符串，记录字母到str
+
+遇左括号，将str插入到栈中，并将str置空，进入下一层
+
+遇右括号，将str反转并返回到上一层
+
 ## 方法总结
 
 ### 二叉树
