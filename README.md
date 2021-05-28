@@ -343,7 +343,7 @@ def topKFrequent(self, words: List[str], k: int) -> List[str]:
 	return sorted(d.keys(), key=cmp_to_key(lambda x, y: int(d[x] < d[y] or (d[x] == d[y] and x > y)) - 0.5))[:k]
 ```
 
-### 1035. 不相交的线（马甲）/ 1143. 最大公共子序列
+### 1035. 不相交的线（马甲）和1143. 最大公共子序列
 
 二维动态规划：`dp[i][j]`表示`nums1[0:i]`和`nums2[0:j]`的最长公共子序列的长度
 
@@ -370,6 +370,12 @@ def topKFrequent(self, words: List[str], k: int) -> List[str]:
 遇左括号，将str插入到栈中，并将str置空，进入下一层
 
 遇右括号，将str反转并返回到上一层
+
+### 461. 汉明距离和477. 汉明距离总和
+
+移位统计，所有元素二进制的第`i`位共有`c`个**1**，`n - c`个**0**，则这些元素在二进制的第`i`位上的汉明距离之和为
+
+`c * (n - c)`。
 
 ## 方法总结
 
