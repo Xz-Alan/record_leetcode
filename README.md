@@ -1,3 +1,5 @@
+
+
 # LeetCode
 
 [toc]
@@ -376,6 +378,18 @@ def topKFrequent(self, words: List[str], k: int) -> List[str]:
 移位统计，所有元素二进制的第`i`位共有`c`个**1**，`n - c`个**0**，则这些元素在二进制的第`i`位上的汉明距离之和为
 
 `c * (n - c)`。
+
+### 1744. 你能在你最喜欢的那天吃到最喜欢的糖果吗？
+
+前缀和
+
+```python
+from itertools import accumulate    # 前缀和
+import operator
+_sum = list(accumulate(candiesCount))
+```
+
+两个区间`[x1,y1]`和`[x2,y2]`求交集 --> `not(x1 > y2 or y1 < x2)`
 
 ## 方法总结
 
