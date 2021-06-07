@@ -391,6 +391,20 @@ _sum = list(accumulate(candiesCount))
 
 两个区间`[x1,y1]`和`[x2,y2]`求交集 --> `not(x1 > y2 or y1 < x2)`
 
+### 494. 目标和
+
+动态规划
+
+记数组的元素和为`sum`，添加 `-`号的元素之和为`neg`，则其余添加`+`的元素之和为`sum - neg`，则有：
+
+`(sum - neg) - neg = sum - 2 * neg = target` --> `neg = (sum - target) / 2`
+
+`dp[i][j]`表示在数组`nums`的前`i`个数中选取元素，使得这些元素之和等于`j`的方案数。最终目标为`dp[n][neg]`
+
+边界条件：$d p[0][j]=\left\{\begin{array}{ll}1, & j=0 \\ 0, & j \geq 1\end{array}\right.$
+
+状态转移方程：$d p[i][j]=\left\{\begin{array}{ll}d p[i-1][j], & j<n u m s[i] \\ d p[i-1][j]+d p[i-1][j-n u m s[i]], & j \geq n u m s[i]\end{array}\right.$
+
 ## 方法总结
 
 ### 二叉树
