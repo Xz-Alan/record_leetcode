@@ -7,9 +7,8 @@
 # @lc code=start
 class Solution:
     def findTargetSumWays(self, nums: List[int], target: int) -> int:
-        _sum = sum(nums)
-        n = len(nums)
-        diff = _sum - target
+        total = sum(nums)
+        n, diff = len(nums), total - target
         if (diff < 0 or diff % 2 !=0):
             return 0 
         neg = diff // 2
