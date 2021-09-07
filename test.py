@@ -5,5 +5,5 @@ import bisect       # 二分
 from functools import cmp_to_key
 import numpy as np
 import time
-from itertools import accumulate    # 前缀和
+from itertools import accumulate, count    # 前缀和
 import operator
