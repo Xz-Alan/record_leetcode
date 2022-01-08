@@ -405,6 +405,13 @@ _sum = list(accumulate(candiesCount))
 
 状态转移方程：$d p[i][j]=\left\{\begin{array}{ll}d p[i-1][j], & j<n u m s[i] \\ d p[i-1][j]+d p[i-1][j-n u m s[i]], & j \geq n u m s[i]\end{array}\right.$
 
+###  89. 格雷编码
+
+二进制数转格雷码
+$$
+g(i)=b(i) \oplus b(i+1)
+$$
+
 ## 方法总结
 
 ### 二叉树
