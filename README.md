@@ -412,6 +412,33 @@ $$
 g(i)=b(i) \oplus b(i+1)
 $$
 
+### [2104. 子数组范围和](https://leetcode-cn.com/problems/sum-of-subarray-ranges/)
+
+**思路**
+
+1. 暴力-两层遍历：从左向右更新最大最小元素；
+2. 单调栈
+
+![image-20220304172604376](https://s2.loli.net/2022/03/04/NjuWPfGecqv7Jz9.png)
+
+> 1. 单调递增栈，分别得到左侧最近的比num小的数，右侧最近的比num小的数；
+> 2. 单调递减栈，分别得到左侧最近的比num大的数，右侧最近的比num大的数。
+
+```python
+# 单调递增栈
+while min_stack and num < nums[min_stack[-1]]:
+    min_stack.pop()
+min_l[i] = min_stack[-1] if min_stack else -1
+min_stack.append(i)
+# 单调递减栈
+while max_stack and num >= nums[max_stack[-1]]:
+    max_stack.pop()
+max_l[i] = max_stack[-1] if max_stack else -1
+max_stack.append(i)
+```
+
+
+
 ## 方法总结
 
 ### 二叉树
