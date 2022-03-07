@@ -439,6 +439,81 @@ max_stack.append(i)
 
 
 
+### [521. 最长特殊序列 Ⅰ](https://leetcode-cn.com/problems/longest-uncommon-subsequence-i/)
+
+**思路**
+
+阅读理解题，字符串相同返回-1，不同比较字符串长度。
+
+### [--2100. 适合打劫银行的日子--](https://leetcode-cn.com/problems/find-good-days-to-rob-the-bank/)
+
+**思路**
+
+1. 前缀和
+2. 动态规划
+
+记录第$i$天前连续非递增的天数$left[i]$ 和 第$i$天后连续非递减的天数$right[i]$。
+
+**题解**
+
+```python
+class Solution:
+    def goodDaysToRobBank(self, security: List[int], time: int) -> List[int]:
+        # 前缀和
+        # if time > 2 * len(security) + 1:
+        #     return []
+        # if time == 0:
+        #     return list(range(len(security)))
+        # res = []
+        # left = right = 0
+        # for i in range(1, len(security) - time):
+        #     if security[i] <= security[i-1]:
+        #         left += 1
+        #     else:
+        #         left = 0
+        #     if security[i+time-1] <= security[i+time]:
+        #         right += 1
+        #     else:
+        #         right = 0
+        #     if left >= time and right >= time:
+        #         res.append(i)
+        # return res
+        # 动态规划
+        n = len(security)
+        left = [0] * n
+        right = [0] * n
+        for i in range(1, n):
+            if security[i] <= security[i-1]:
+                left[i] = left[i-1] + 1
+            if security[n-i-1] <= security[n-i]:
+                right[n-i-1] = right[n-i] + 1
+        return [i for i in range(time, n-time) if left[i] >= time and right[i] >= time]
+```
+
+### [504. 七进制数](https://leetcode-cn.com/problems/base-7/)
+
+**思路**：从最低位到最高位还原七进制的值为`num%7`。当输入为负，我们可以先取`num`的绝对值来求七进制，最后再添加负号。
+
+**题解**
+
+```
+class Solution:
+    def convertToBase7(self, num: int) -> str:
+        if num == 0:
+            return "0"
+        negative = num < 0
+        res = []
+        num = abs(num)
+        while num:
+            res.append(str(num % 7))
+            num //= 7
+        if negative:
+            res.append('-')
+        return "".join(reversed(res))
+```
+
+
+
 ## 方法总结
 
 ### 二叉树
