@@ -512,6 +512,28 @@ class Solution:
         return "".join(reversed(res))
 ```
 
+### [2055. 蜡烛之间的盘子](https://leetcode-cn.com/problems/plates-between-candles/)
+
+**思路**：对于子字符串`[left,right]`，找到`left`右侧最近的蜡烛位置和`right`左侧最近的蜡烛位置，则这之间的所有盘子均为有效盘子。因此对于每一个下标，维护三个数组：`left[n]`、`right[n]`、`presum[n]`，其中前缀和用于计算子区间的有效盘子。
+
+### [798. 得分最高的最小轮调](https://leetcode-cn.com/problems/smallest-rotation-with-highest-score/)
+
+**思路**：针对数组中的每一个数，找到所有能够“加分”的k值，可以发现，实际上满足条件的k值是一个范围`[i+1, n-nums[i]+i]`，并对区间内所有数取`(mod)n`，接着找到所有满足条件的k值出现的次数最大值即可。
+
+但该方法时间复杂度为`O(n^2)`，超出时间范围，因此采用**差分数组**的思想，本质上为前缀和的逆过程。遍历数组`nums`的所有元素并更新差分数组之后，遍历数组`diffs`并计算前缀和，则每个下标处的前缀和表示当前论调下标处的得分，遍历结束之后得到结果。
+
+差分数组`diffs`有：$diffs[i] = count[i]-count[i-1]$，因此在遍历数组`nums`时，令`low = (i+1) mod n`，令`high = (i-nums[i]+n-1) mod n`，将`diffs[low]`的值加1，将`diffs[high]`的值减1，如果`low>=high`，则将`diffs[0]`的值加1。
+
+```
+for i in range(n):
+    low = (i+1) % n
+    high = (n-nums[i]+i+1) % n
+    diffs[low] += 1
+    diffs[high] -= 1
+    if low >= high:
+        diffs[0] += 1
+```
+
 
 
 ## 方法总结
