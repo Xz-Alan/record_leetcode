@@ -534,6 +534,16 @@ for i in range(n):
         diffs[0] += 1
 ```
 
+### [589. N 叉树的前序遍历](https://leetcode-cn.com/problems/n-ary-tree-preorder-traversal/)
+
+**思路**：采用二叉树前序遍历的深度优先搜索的模板，按照根-->左-->右的顺序，改为根-->N子节点的顺序，对每个父节点的children节点进行遍历即可。
+
+
+
+### [590. N 叉树的后序遍历](https://leetcode-cn.com/problems/n-ary-tree-postorder-traversal/)
+
+**思路**：采用二叉树后序遍历的深度优先搜索的模板，按照左-->右-->根的顺序，改为N子节点-->根的顺序，对每个父节点的children节点进行遍历即可。
+
 
 
 ## 方法总结
@@ -562,7 +572,7 @@ def genTree(arr):
 root = genTree(arr)
 ```
 
-#### 遍历
+#### 二叉树遍历
 
 - 前序： 根-->左-->右
 - 中序：左-->根-->右
@@ -689,9 +699,9 @@ class Solution_2:
         # return res
 ```
 
-##### 莫里斯遍历
+#### 莫里斯遍历
 
-##### N叉树遍历
+#### N叉树遍历
 
 ### 二分查找
 
