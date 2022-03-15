@@ -544,6 +544,31 @@ for i in range(n):
 
 **思路**：采用二叉树后序遍历的深度优先搜索的模板，按照左-->右-->根的顺序，改为N子节点-->根的顺序，对每个父节点的children节点进行遍历即可。
 
+### [2044. 统计按位或能得到最大值的子集数目](https://leetcode-cn.com/problems/count-number-of-maximum-bitwise-or-subsets/)
+
+**思路**：用`n`比特数表示`2^n`个子集，第`i`位表示数组第`i`个元素的选取状态，通过移位来判断第`j`个元素是否被选取。
+
+**题解**
+
+```python
+class Solution:
+    def countMaxOrSubsets(self, nums: List[int]) -> int:
+        max_val, res, n = 0, 0, len(nums)
+        for i in range(1 << n):
+            # 用n比特数表示2^n个子集，第i位表示数组第i个元素的选取状态
+            tmp = 0
+            for j in range(n):
+                # 通过移位来判断第j个元素是否被选取
+                if (i >> j) & 1 == 1:
+                    tmp |= nums[j]
+            if tmp == max_val:
+                res += 1
+            elif tmp > max_val:
+                max_val = tmp
+                res = 1
+        return res
+```
+
 
 
 ## 方法总结
