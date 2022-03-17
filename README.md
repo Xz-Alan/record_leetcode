@@ -569,6 +569,52 @@ class Solution:
         return res
 ```
 
+### [720. 词典中最长的单词](https://leetcode-cn.com/problems/longest-word-in-dictionary/)
+
+**思路**
+
+1. 先对数组`words`排序，按照长度升序、字典降序的顺序排序，因为所有单词都由其他单词逐步添加一个字母组成，构建哈希表加入符合条件的单词，对排序后的`words`遍历一遍即可得到答案。
+2. TODO：字典树(Trie(前缀树))。
+
+**注意**：对于python排序时，因为str不能取负, 因此先长度降序，字典升序，再反转。
+
+>*words*.sort(*key*=*lambda* *x*: (-len(*x*), *x*), *reverse*=True)
+
+**题解**
+
+```c++
+class Solution
+{
+public:
+    string longestWord(vector<string> &words)
+    {
+        string res = "";
+        unordered_set<string> hash;
+        hash.emplace(res);
+        sort(words.begin(), words.end(), [](const string &a, const string &b)
+             {
+                 if (a.size() != b.size())
+                 {
+                     return a.size() < b.size(); // 长度升序
+                 }
+                 else
+                 {
+                     return a > b; // 字典降序
+                 }
+             });
+        for (auto &word : words)
+        {
+            if (hash.count(word.substr(0, word.size() - 1)))
+            {
+                res = word;
+                hash.emplace(word);
+            }
+        }
+        return res;
+    }
+};
+```
+
 
 
 ## 方法总结
