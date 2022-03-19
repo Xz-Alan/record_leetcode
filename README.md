@@ -1,8 +1,6 @@
-
+[toc]
 
 # LeetCode
-
-[toc]
 
 ## 题解
 
@@ -618,3 +616,39 @@ public:
 ### [2043. 简易银行系统](https://leetcode-cn.com/problems/simple-bank-system/)
 
 纯模拟
+
+### [606. 根据二叉树创建字符串](https://leetcode-cn.com/problems/construct-string-from-binary-tree/)
+
+**思路**
+
+1. 递归实现
+2. 迭代实现
+
+**迭代题解**
+
+```python
+class Solution:
+    def tree2str(self, root: Optional[TreeNode]) -> str:
+        res = ""
+        stack = [root]
+        vis = set()
+        while stack:
+            cur = stack[-1]
+            if cur in vis:
+                if cur != root:
+                    res += ")"
+                stack.pop()
+            else:
+                vis.add(cur)
+                if cur != root:
+                    res += "("
+                res += str(cur.val)
+                if not cur.left and cur.right:
+                    res += "()"
+                if cur.right:
+                    stack.append(cur.right)
+                if cur.left:
+                    stack.append(cur.left)
+        return res
+```
+
