@@ -652,3 +652,9 @@ class Solution:
         return res
 ```
 
+### [653. 两数之和 IV - 输入 BST](https://leetcode-cn.com/problems/two-sum-iv-input-is-a-bst/)
+
+**思路**
+
+1. BST中序遍历后为升序数组，转化为双指针找两数之和的问题；
+2. 通过DFS或BFS遍历BST，用哈希表记录遍历过的节点，如果存在`k-x`，即返回`True`。
