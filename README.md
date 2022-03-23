@@ -664,3 +664,20 @@ class Solution:
 **思路**
 
 分别记录Alice和Bob操作的次数：`A`或`B`连续出现3次及以上的次数，返回`num_a>num_b`。
+
+### [440. 字典序的第K小数字](https://leetcode-cn.com/problems/k-th-smallest-in-lexicographical-order/)
+
+**思路**
+
+比较暴力的思路是把所有的数字转换成字符串，然后排序找到第`k`小的数字即可，显然不满足时间复杂度要求。
+
+引入**字典树**，将所有小于等于`n`的数字按照字典序的方式进行重建，前序遍历即可得到字典序从小到大的数字序列。字典树示意图如下：
+
+<img src="https://s2.loli.net/2022/03/23/GQ3qMVW1tlhOoKY.png" alt="image-20220323125628958" style="zoom:80%;" />
+
+设当前字典树第$i$小的节点为$n_i$，设以$n_i$为根节点构成的子树的节点数目为$step(n_i)$，则有：
+
+<img src="https://s2.loli.net/2022/03/23/NxCIX7AmbctY91y.png" alt="image-20220323130038152" style="zoom:80%;" />
+
+对于$step(n_i)$，按照层次遍历子树，$\textit{first}_i$指向第$i$层的最左侧的孩子节点，$\textit{last}_i$指向第$i$层的最右侧的孩子节点，则有$\textit{first}_i=10\times\textit{first}_{i-1}$，$\textit{last}_i=10\times\textit{last}_{i-1}+9$，$step(n_i)=min(n,last_i)-first_i+1$，不断迭代直到$\textit{first}_i > n$则终止向下搜索。
+
