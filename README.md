@@ -681,3 +681,19 @@ class Solution:
 
 对于$step(n_i)$，按照层次遍历子树，$\textit{first}_i$指向第$i$层的最左侧的孩子节点，$\textit{last}_i$指向第$i$层的最右侧的孩子节点，则有$\textit{first}_i=10\times\textit{first}_{i-1}$，$\textit{last}_i=10\times\textit{last}_{i-1}+9$，$step(n_i)=min(n,last_i)-first_i+1$，不断迭代直到$\textit{first}_i > n$则终止向下搜索。
 
+### [661. 图片平滑器](https://leetcode-cn.com/problems/image-smoother/)
+
+**思路**：直接模拟遍历，求$3 \times 3$过滤器的平均值即可，注意角、边、正常情况可以用统一的`[max(i-1,0):min(i+2,h)]`和`[max(j-1,0):min(j+2,w)]`来实现。
+
+
+
+
+
+
+
+
+
+
+
+
+
