@@ -691,9 +691,9 @@ class Solution:
 
 可以通过不断将`n`除以`5`，并累加每次除后的`n`，来得到答案。
 
+### [682. 棒球比赛](https://leetcode-cn.com/problems/baseball-game/)
 
-
-
+**思路**：直接模拟
 
 
 
