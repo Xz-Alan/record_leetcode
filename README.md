@@ -695,7 +695,7 @@ class Solution:
 
 **思路**：直接模拟
 
+### [2028. 找出缺失的观测数据](https://leetcode-cn.com/problems/find-missing-observations/)
 
-
-
+**思路**：简单模拟
 
