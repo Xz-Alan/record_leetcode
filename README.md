@@ -706,7 +706,11 @@ class Solution:
 1. 直接模拟；
 2. 位运算：如果`n`的二进制表示总是0、1交替，则有`a=n^(n>>1)`的二进制表示全为一，等价于`a&(a+1)==0`。
 
+#### [2024. 考试的最大困扰度](https://leetcode-cn.com/problems/maximize-the-confusion-of-an-exam/)
 
+**思路**：滑动窗口，使窗口内异常值出现的次数`<=k`，记录窗口的最大长度。对于本题，求`max(find_largest('T'), find_largest('F'))`。
+
+同[1004. 最大连续1的个数 III](https://leetcode-cn.com/problems/max-consecutive-ones-iii/)
 
 
 
