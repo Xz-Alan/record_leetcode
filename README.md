@@ -706,13 +706,31 @@ class Solution:
 1. 直接模拟；
 2. 位运算：如果`n`的二进制表示总是0、1交替，则有`a=n^(n>>1)`的二进制表示全为一，等价于`a&(a+1)==0`。
 
-#### [2024. 考试的最大困扰度](https://leetcode-cn.com/problems/maximize-the-confusion-of-an-exam/)
+### [2024. 考试的最大困扰度](https://leetcode-cn.com/problems/maximize-the-confusion-of-an-exam/)
 
 **思路**：滑动窗口，使窗口内异常值出现的次数`<=k`，记录窗口的最大长度。对于本题，求`max(find_largest('T'), find_largest('F'))`。
 
 同[1004. 最大连续1的个数 III](https://leetcode-cn.com/problems/max-consecutive-ones-iii/)
 
+### [728. 自除数](https://leetcode-cn.com/problems/self-dividing-numbers/)
 
+**思路**：直接遍历判断`[left,right]`的数是否为**自除数**。
+
+注意要求一个数`num`的每一位的值，则有：
+
+```
+# python
+x = num
+while x:
+	x, d = divmod(x, 10)
+// c++
+int x = num;
+while (x)
+{
+    int d = x % 10;
+    x /= 10;
+}
+```
 
 
 
