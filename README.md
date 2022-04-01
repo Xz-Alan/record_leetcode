@@ -732,5 +732,24 @@ while (x)
 }
 ```
 
+### [954. 二倍数对数组](https://leetcode-cn.com/problems/array-of-doubled-pairs/)
+
+**思路**：
+
+1. 按照绝对值从大到小直接排序，遍历`arr`，找到一个`2*num==match[0]`，则有`match.pop[0]`，否则`match.append(num)`，最终返回`match`的长度不为零。
+2. 哈希表排序，首先对`arr`计数器计数，然后按照键绝对值排序，能够对重复元素进行匹配，最坏的时间和空间复杂度同方法1。
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
