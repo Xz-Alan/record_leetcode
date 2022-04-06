@@ -739,7 +739,44 @@ while (x)
 1. 按照绝对值从大到小直接排序，遍历`arr`，找到一个`2*num==match[0]`，则有`match.pop[0]`，否则`match.append(num)`，最终返回`match`的长度不为零。
 2. 哈希表排序，首先对`arr`计数器计数，然后按照键绝对值排序，能够对重复元素进行匹配，最坏的时间和空间复杂度同方法1。
 
+### [310. 最小高度树](https://leetcode-cn.com/problems/minimum-height-trees/)
 
+**思路**：对于一个无向图，每一个节点都有一个度，表示该节点与多少个其他节点有连接关系。树是一个无向图，要求最小高度树，则以度为`1`的节点为叶子节点，从下往上`BFS`遍历，最后一轮的叶子节点，就是最小高度树的根节点。
+
+```python
+class Solution:
+    def findMinHeightTrees(self, n: int, edges: List[List[int]]) -> List[int]:
+        if n == 1:
+            return [0]
+        degree = [0]*n  # 记录每个点的度
+        map = defaultdict(list)  # 存储邻居节点
+        # 初始化每个节点的度和邻居
+        for edge in edges:
+            degree[edge[0]] += 1
+            degree[edge[1]] += 1
+            map[edge[0]].append(edge[1])
+            map[edge[1]].append(edge[0])
+        # 记录度为1的叶子节点，加入队列中，从叶子节点往上遍历
+        que = deque()
+        for i in range(n):
+            if degree[i] == 1:
+                que.append(i)
+        # 每次遍历叶子节点，每一轮将叶子节点从树上删除后将新的叶子节点入队进行下一轮遍历
+        while que:
+            res = []
+            length = len(que)
+            for i in range(length):
+                cur = que.popleft()
+                res.append(cur)
+                neighbors = map[cur]
+                for neighbor in neighbors:
+                    # 将叶子节点的邻居节点的度减一，若是新的叶子节点，则入队
+                    degree[neighbor] -= 1
+                    if degree[neighbor] == 1:
+                        que.append(neighbor)
+        # 返回最后一轮的叶子节点，就是最小高度树的根节点
+        return res
+```
 
 
 
