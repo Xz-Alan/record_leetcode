@@ -536,11 +536,13 @@ for i in range(n):
 
 **思路**：采用二叉树前序遍历的深度优先搜索的模板，按照根-->左-->右的顺序，改为根-->N子节点的顺序，对每个父节点的children节点进行遍历即可。
 
-
-
 ### [590. N 叉树的后序遍历](https://leetcode-cn.com/problems/n-ary-tree-postorder-traversal/)
 
 **思路**：采用二叉树后序遍历的深度优先搜索的模板，按照左-->右-->根的顺序，改为N子节点-->根的顺序，对每个父节点的children节点进行遍历即可。
+
+### [429. N 叉树的层序遍历](https://leetcode-cn.com/problems/n-ary-tree-level-order-traversal/)
+
+**思路**：采用二叉树层序遍历的BFS模板，对每个父节点的children节点进行遍历。
 
 ### [2044. 统计按位或能得到最大值的子集数目](https://leetcode-cn.com/problems/count-number-of-maximum-bitwise-or-subsets/)
 
