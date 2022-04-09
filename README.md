@@ -780,11 +780,15 @@ class Solution:
         return res
 ```
 
+### [780. 到达终点](https://leetcode-cn.com/problems/reaching-points/)
 
+**思路**：从终点反向推起点，**转换**定义为`(x,y)`到`(x,x+y)`或`(x+y,y)`，则有：
 
+<img src="https://s2.loli.net/2022/04/09/dQp7KjRV8cWv5NO.png" alt="image-20220409124809378" style="zoom:80%;" />
 
+直接反推，会超出时间限制，所以对于`tx>sx && ty>sy && tx!=ty`成立时，更新`(tx%ty,ty)`或`(tx,ty%tx)`。
 
-
+反推条件不成立时，则此时有`tx=sx`或`ty=ty`，分别讨论即可。
 
 
 
