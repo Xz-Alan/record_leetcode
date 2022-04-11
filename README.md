@@ -790,9 +790,7 @@ class Solution:
 
 反推条件不成立时，则此时有`tx=sx`或`ty=ty`，分别讨论即可。
 
+### [357. 统计各位数字都不同的数字个数](https://leetcode-cn.com/problems/count-numbers-with-unique-digits/)
 
-
-
-
-
+**思路**：排列组合，首位不为0时，共有`9*A(9,n-1)`种可能；首位为0时，转化为`n-1`的结果，即加入动态规划，`dp[i]=9*A(9,i-1)+dp[i-1]`。
 
